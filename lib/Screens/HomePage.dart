@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/widgets/FeaturedCard.dart';
 import 'package:netflix/widgets/HomepageAppbar.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -23,24 +25,34 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: Stack(
-        children: [
-          SafeArea(
-            child: CustomScrollView(
-              controller: _scrollController,
-              slivers: <Widget>[
-                HomePageAppBar(scrollOffset),
-                SliverToBoxAdapter(
-                  child: Container(
-                    height: 2000,
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+      body: NestedScrollView(
+          controller: _scrollController,
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (BuildContext context, bool innerBoxScrolled) {
+            return <Widget>[
+              SliverStack(
+                children: [
+                  Content(),
+                  HomePageAppBar(scrollOffset),
+                ],
+              )
+            ];
+          },
+          body: Container(
+            child: FeaturedCard(),
+          )),
+    );
+  }
+}
+
+class Content extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: FeaturedCard(),
     );
   }
 }
