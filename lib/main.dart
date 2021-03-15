@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:netflix/Screens/HomePage.dart';
 import 'package:netflix/THEME.dart';
 
@@ -13,7 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
-      home: HomePage(),
+      home: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+          ),
+          child: HomePage()),
     );
   }
 }
