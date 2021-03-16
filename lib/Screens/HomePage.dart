@@ -62,7 +62,7 @@ class Content extends StatelessWidget {
             //TODO: Add profile name instead of H.
             title: "Continue Watching for H",
             contentList: [],
-          )
+          ),
         ],
       ),
     );
