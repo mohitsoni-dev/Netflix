@@ -24,7 +24,7 @@ class _SplScreenState extends State<SplScreen> {
         setState(() {});
       });
     Timer(
-        Duration(seconds: 4, milliseconds: 500),
+        Duration(seconds: 5),
         () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(
