@@ -50,17 +50,5 @@ class _SplScreenState extends State<SplScreen> {
         ),
       ),
     );
-
-    // return SplashScreen(
-    //   seconds: 4,
-    //   navigateAfterSeconds: widget.navigateAfterSplashScreen,
-    //
-    //   //title: Text('WELCOME TO NETFLIX'),
-    //   // image: Image.asset('assets/logo.png'),
-    //   backgroundColor: Colors.black,
-    //   // photoSize: 100.0,
-    //
-    //   //loaderColor: Colors.red,
-    // );
   }
 }
