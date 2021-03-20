@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Screens/login_screen.dart';
 import 'package:netflix/Screens/register_screen.dart';
-import 'package:netflix/authentication/authentication_service.dart';
-import 'package:provider/provider.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -91,8 +89,3 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
-
-// context.read<AuthenticationService>().signIn(
-//       email: 'test@gmail.com',
-//       password: '123456',
-//     );

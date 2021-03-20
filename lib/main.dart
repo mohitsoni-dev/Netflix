@@ -32,9 +32,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
         home: SplScreen(
-          navigateAfterSplashScreen: AuthenticationWrapper(
-            child: HomePage(),
-          ),
+          navigateAfterSplashScreen: AuthenticationWrapper(),
         ),
       ),
     );
