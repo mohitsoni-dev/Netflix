@@ -1,14 +1,16 @@
 import "package:flutter/material.dart";
+import 'package:flutter_icons/flutter_icons.dart';
 
 class HomePageAppBar extends StatelessWidget {
   final double scrollOffset;
 
-  HomePageAppBar(this.scrollOffset);
+  HomePageAppBar({Key key, this.scrollOffset}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return SliverAppBar(
+      key: key,
       bottom: PreferredSize(
         child: Padding(
           padding: EdgeInsets.only(bottom: 15),
@@ -51,15 +53,15 @@ class HomePageAppBar extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Transform.scale(
-                      scale: 0.7,
-                      child: IconButton(
-                        icon: Image.asset('assets/search.png'),
-                        iconSize: 30,
-                        onPressed: () {
-                          //TODO: Navigate to Search page
-                        },
-                      ),
+                    IconButton(
+                      icon: Icon(
+                        Ionicons.ios_search,
+                        color: Colors.black87,
+                      ), //Image.asset('assets/search.png'),
+                      iconSize: 30,
+                      onPressed: () {
+                        //TODO: Navigate to Search page
+                      },
                     ),
                     //TODO: Add DP here
                     GestureDetector(
