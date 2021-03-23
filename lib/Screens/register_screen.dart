@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:netflix/Screens/HomePage.dart';
 import 'package:netflix/Screens/login_screen.dart';
+import 'package:netflix/Screens/navigation_screen.dart';
 import 'package:netflix/authentication/authentication_service.dart';
 import 'package:netflix/widgets/input_field.dart';
 import 'package:netflix/widgets/large_elevated_btn.dart';
@@ -97,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     LargeOutlinedBtn(
                       label: 'SIGN IN',
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => LoginScreen()),
@@ -115,18 +115,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void handleSignUp() async {
+    //TODO: Show Loader
     if (password1 != password2) return;
     String res = await context.read<AuthenticationService>().signUp(
           email: email,
           password: password1,
         );
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return res == "Signed up" ? HomePage() : RegisterScreen();
-        },
-      ),
-    );
+
+    if (res == "Signed up") {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => NavigationScreen()),
+          (route) => false);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(res),
+      ));
+    }
+
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) {
+    //       return res == "Signed up" ? NavigationScreen() : RegisterScreen();
+    //     },
+    //   ),
+    // );
   }
 }

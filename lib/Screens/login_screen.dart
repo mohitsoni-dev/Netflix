@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     LargeOutlinedBtn(
                       label: 'SIGN UP',
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => RegisterScreen()),

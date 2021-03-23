@@ -13,8 +13,10 @@ class AuthenticationService {
         email: email,
         password: password,
       );
+      print("Successfully signed in");
       return "Signed in";
     } on FirebaseAuthException catch (e) {
+      print(e.message);
       return e.message;
     }
   }
@@ -25,8 +27,10 @@ class AuthenticationService {
         email: email,
         password: password,
       );
+      print("Success");
       return "Signed up";
     } on FirebaseAuthException catch (e) {
+      print(e.message);
       return e.message;
     }
   }
