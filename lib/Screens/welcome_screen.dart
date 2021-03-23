@@ -14,9 +14,12 @@ class WelcomeScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image(
-                    image: AssetImage('assets/logo.png'),
-                    width: 200.0,
+                  Hero(
+                    tag: 'logo',
+                    child: Image(
+                      image: AssetImage('assets/logo.png'),
+                      width: 200.0,
+                    ),
                   ),
                   SizedBox(height: 25.0),
                   Text(
