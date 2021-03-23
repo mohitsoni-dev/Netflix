@@ -6,6 +6,8 @@ import 'package:netflix/widgets/item_card_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -35,7 +37,10 @@ class _HomePageState extends State<HomePage> {
             SliverStack(
               children: [
                 Content(),
-                HomePageAppBar(scrollOffset),
+                HomePageAppBar(
+                  key: PageStorageKey('AppBar'),
+                  scrollOffset: scrollOffset,
+                ),
               ],
             )
           ],

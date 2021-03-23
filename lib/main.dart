@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:netflix/Screens/HomePage.dart';
-import 'package:netflix/THEME.dart';
-import 'package:netflix/Screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:netflix/Screens/splash_screen.dart';
+import 'package:netflix/THEME.dart';
 import 'package:netflix/authentication/authentication_service.dart';
 import 'package:netflix/authentication/authentication_wrapper.dart';
 import 'package:provider/provider.dart';
+
+import 'Screens/navigation_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.dark(),
         home: SplScreen(
           navigateAfterSplashScreen: AuthenticationWrapper(
-            child: HomePage(),
+            child: NavigationScreen(),
           ),
         ),
       ),
