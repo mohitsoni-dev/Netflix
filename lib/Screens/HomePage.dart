@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:netflix/widgets/FeaturedCard.dart';
 import 'package:netflix/widgets/HomepageAppbar.dart';
 import 'package:netflix/widgets/item_card_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -29,26 +31,30 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User>();
     return Scaffold(
-        backgroundColor: Colors.black,
-        body: CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-            SliverStack(
-              children: [
-                Content(),
-                HomePageAppBar(
-                  key: PageStorageKey('AppBar'),
-                  scrollOffset: scrollOffset,
-                ),
-              ],
-            )
-          ],
-        ));
+      backgroundColor: Colors.black,
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          SliverStack(
+            children: [
+              Content(user: firebaseUser),
+              HomePageAppBar(
+                key: PageStorageKey('AppBar'),
+                scrollOffset: scrollOffset,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
 
 class Content extends StatelessWidget {
+  final User user;
+  Content({@required this.user});
   @override
   Widget build(BuildContext context) {
     return SliverList(
@@ -64,13 +70,20 @@ class Content extends StatelessWidget {
             contentList: null,
           ),
           Category(
-            //TODO: Add profile name instead of H.
-            title: "Continue Watching for H",
+            title:
+                "Continue Watching for ${strstr(user.email, '@', before: true)}",
             contentList: [],
           ),
         ],
       ),
     );
+  }
+
+  String strstr(String myString, String pattern, {bool before = false}) {
+    var index = myString.indexOf(pattern);
+    if (index < 0) return null;
+    if (before) return myString.substring(0, index);
+    return myString.substring(index + pattern.length);
   }
 }
 
