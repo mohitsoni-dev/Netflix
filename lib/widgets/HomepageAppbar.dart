@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:netflix/Screens/profile_screen.dart';
 
 class HomePageAppBar extends StatelessWidget {
   final double scrollOffset;
@@ -66,14 +67,23 @@ class HomePageAppBar extends StatelessWidget {
                     //TODO: Add DP here
                     GestureDetector(
                       onTap: () {
-                        //TODO: Navigate to user profile page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ),
+                        );
                       },
                       child: AspectRatio(
                         aspectRatio: 1 / 1,
                         child: Padding(
                           padding: EdgeInsets.all(20.0),
                           child: Container(
-                            child: Image.asset('assets/logo.png'),
+                            child: Hero(
+                              tag: 'profile_pic',
+                              child:
+                                  Image.asset('assets/blank_profile_pic.png'),
+                            ),
                           ),
                         ),
                       ),
